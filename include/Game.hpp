@@ -2,9 +2,11 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <vector>
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "Obstacle.hpp"
 
 class Game
 {
@@ -26,11 +28,11 @@ class Game
         SDL_Window* m_pWindow;
         SDL_Renderer* m_pRenderer;
 
-        int m_currentFrame;
-
         bool m_bRunning;
 
-        Player m_player;
+        Player* m_player;
+        Obstacle* m_obstacle;
+        std::vector<Obstacle*> m_gameObstacles;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
+#include <iostream>
 
 void GameObject::load(int x, int y, int width, int height, std::string textureID)
 {

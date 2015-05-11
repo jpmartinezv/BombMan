@@ -55,9 +55,18 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
+    
+    if(!TextureManager::Instance()->load("assets/bh.png", "bh", m_pRenderer))
+    {
+        return false;
+    }
+    m_player = new Player();
+    m_player->load(300, 300, 96, 96, "animate");
+    
+    m_obstacle = new Obstacle();
+    m_obstacle->load(400, 400, 80, 80, "bh");
 
-    m_player.load(300, 300, 96, 96, "animate");
-
+    m_gameObstacles.push_back(m_obstacle);
     return true;
 }
 
@@ -65,14 +74,22 @@ void Game::render()
 {
     SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-    m_player.draw(m_pRenderer);
+    m_player->draw(m_pRenderer);
+    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObstacles.size(); i++)
+    {
+        m_gameObstacles[i]->draw(m_pRenderer);
+    }
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update()
 {
-    m_player.update();
+    m_obstacle->update();
+    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObstacles.size(); i++)
+    {
+        m_gameObstacles[i]->update();
+    }
 }
 
 void Game::handleEvents()
@@ -82,6 +99,27 @@ void Game::handleEvents()
     {
         switch (event.type)
         {
+            case SDL_KEYDOWN:
+                switch( event.key.keysym.sym ){
+                    case SDLK_LEFT:
+                        m_player->mov(2, -3, 0);
+                        break;
+                    case SDLK_RIGHT:
+                        m_player->mov(3, 3, 0);
+                        break;
+                    case SDLK_UP:
+                        m_player->mov(4, 0, -3);
+                        break;
+                    case SDLK_DOWN:
+                        m_player->mov(1, 0, 3);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case SDL_KEYUP:
+                m_player->stop();
+                break;
             case SDL_QUIT:
                 m_bRunning = false;
                 break;
