@@ -56,6 +56,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false;
     }
 
+    m_player.load(300, 300, 96, 96, "animate");
+
     return true;
 }
 
@@ -63,18 +65,14 @@ void Game::render()
 {
     SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-    //TheTextureManager::Instance()->draw("animate", 0,0, 20, 40, m_pRenderer);
-    TheTextureManager::Instance()->drawFrame("animate", 100, 50, 96, 96, 1, m_currentFrame, m_pRenderer);
-    TheTextureManager::Instance()->drawFrame("animate", 100, 150, 96, 96, 2, m_currentFrame, m_pRenderer);
-    TheTextureManager::Instance()->drawFrame("animate", 100, 250, 96, 96, 3, m_currentFrame, m_pRenderer);
-    TheTextureManager::Instance()->drawFrame("animate", 100, 350, 96, 96, 4, m_currentFrame, m_pRenderer);
+    m_player.draw(m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update()
 {
-    m_currentFrame = int(((SDL_GetTicks() / 100) % 3));
+    m_player.update();
 }
 
 void Game::handleEvents()

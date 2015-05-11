@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include "TextureManager.hpp"
+#include "GameObject.hpp"
+#include "Player.hpp"
 
 class Game
 {
@@ -27,6 +29,8 @@ class Game
         int m_currentFrame;
 
         bool m_bRunning;
+
+        Player m_player;
 };
 
 #endif

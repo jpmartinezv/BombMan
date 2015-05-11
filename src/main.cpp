@@ -7,8 +7,8 @@ Game* g_game;
 int main(int argc, char* argv[])
 {
 	g_game = new Game();
-	//g_game->init("BombMan", 100, 100, 640, 480, SDL_WINDOW_FULLSCREEN);
-	g_game->init("BombMan", 100, 100, 640, 480, 0);
+	//g_game->init("BombMan", 100, 100, 1280, 960, SDL_WINDOW_FULLSCREEN);
+	g_game->init("BombMan", 100, 100, 1280, 960, 0);
 	
 	while(g_game->running())
 	{
