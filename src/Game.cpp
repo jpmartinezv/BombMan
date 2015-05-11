@@ -51,7 +51,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 
     // LOAD IMG
-    if(!TextureManager::Instance()->load("assets/man.png", "animate", m_pRenderer))
+    if(!TextureManager::Instance()->load("assets/monster.png", "animate", m_pRenderer))
     {
         return false;
     }
@@ -63,16 +63,18 @@ void Game::render()
 {
     SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-    TheTextureManager::Instance()->draw("animate", 0,0, 20, 40, m_pRenderer);
-    TheTextureManager::Instance()->drawFrame("animate", 100,100, 20, 40,
-            1, m_currentFrame, m_pRenderer);
+    //TheTextureManager::Instance()->draw("animate", 0,0, 20, 40, m_pRenderer);
+    TheTextureManager::Instance()->drawFrame("animate", 100, 50, 96, 96, 1, m_currentFrame, m_pRenderer);
+    TheTextureManager::Instance()->drawFrame("animate", 100, 150, 96, 96, 2, m_currentFrame, m_pRenderer);
+    TheTextureManager::Instance()->drawFrame("animate", 100, 250, 96, 96, 3, m_currentFrame, m_pRenderer);
+    TheTextureManager::Instance()->drawFrame("animate", 100, 350, 96, 96, 4, m_currentFrame, m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update()
 {
-    m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % 3));
 }
 
 void Game::handleEvents()

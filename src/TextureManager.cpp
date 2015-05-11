@@ -66,4 +66,3 @@ TextureManager* TextureManager::Instance()
 	}
 	return s_pInstance;
 }
-
