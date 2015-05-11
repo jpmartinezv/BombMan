@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include "TextureManager.hpp"
 
 class Game
 {
@@ -12,7 +13,7 @@ class Game
         bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
 
         void render ();
-        void update () {};
+        void update ();
         void handleEvents ();
         void clean();
 
@@ -22,6 +23,8 @@ class Game
     private:
         SDL_Window* m_pWindow;
         SDL_Renderer* m_pRenderer;
+
+        int m_currentFrame;
 
         bool m_bRunning;
 };
