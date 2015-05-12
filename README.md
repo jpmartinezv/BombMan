@@ -1,7 +1,7 @@
 # BombMan
 
 ```
-mdkir buidl
+mkdir build
 cd build
 cmake ..
 make
