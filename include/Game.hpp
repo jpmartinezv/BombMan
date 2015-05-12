@@ -6,7 +6,7 @@
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
 #include "Player.hpp"
-#include "Obstacle.hpp"
+#include "Map.hpp"
 
 class Game
 {
@@ -36,8 +36,7 @@ private:
     bool m_bRunning;
 
     Player *m_player;
-    Obstacle *m_obstacle;
-    std::vector<Obstacle *> m_gameObstacles;
+    Map *m_map;
 };
 
 #endif

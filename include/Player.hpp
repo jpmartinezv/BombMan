@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "GameObject.hpp"
+#include "Map.hpp"
 
 class Player : public GameObject
 {
@@ -11,7 +12,7 @@ public:
 
     void draw(SDL_Renderer *pRenderer);
 
-    void update();
+    void update(Map *m_map);
 
     void clean();
 

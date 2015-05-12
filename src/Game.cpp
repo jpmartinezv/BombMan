@@ -49,7 +49,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 
 
     // LOAD IMG
-    if (!TextureManager::Instance()->load("assets/monster.png", "animate", m_pRenderer))
+    if (!TextureManager::Instance()->load("assets/monster.png", "monster", m_pRenderer))
     {
         return false;
     }
@@ -59,12 +59,11 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         return false;
     }
     m_player = new Player();
-    m_player->load(300, 300, 96, 96, "animate");
+    m_player->load(300, 300, 96, 96, "monster");
 
-    m_obstacle = new Obstacle();
-    m_obstacle->load(400, 400, 80, 80, "bh");
+    m_map = new Map(width, height);
+    m_map->generate_obstacles(20);
 
-    m_gameObstacles.push_back(m_obstacle);
     return true;
 }
 
@@ -73,21 +72,15 @@ void Game::render()
     SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
     m_player->draw(m_pRenderer);
-    for (std::vector<GameObject *>::size_type i = 0; i != m_gameObstacles.size(); i++)
-    {
-        m_gameObstacles[i]->draw(m_pRenderer);
-    }
+    m_map->draw(m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update()
 {
-    m_player->update();
-    for (std::vector<GameObject *>::size_type i = 0; i != m_gameObstacles.size(); i++)
-    {
-        m_gameObstacles[i]->update();
-    }
+    m_player->update(m_map);
+    m_map->update();
 }
 
 void Game::handleEvents()
