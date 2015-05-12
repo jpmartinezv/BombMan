@@ -1,29 +1,31 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
-    
+
 #include <iostream>
 #include <SDL2/SDL.h>
 
 class GameObject
 {
-    public:
-        void load(int x, int y, int width, int height, std::string textureID);
-        void draw(SDL_Renderer* pRenderer);
-        void update();
-        void clean();
+public:
+    void load(int x, int y, int width, int height, std::string textureID);
 
-    protected:
+    void draw(SDL_Renderer *pRenderer);
 
-        std::string m_textureID;
+    void update();
 
-        int m_currentFrame;
-        int m_currentRow;
+    void clean();
 
-        int m_x;
-        int m_y;
+protected:
+    std::string m_textureID;
 
-        int m_width;
-        int m_height;
+    int m_currentFrame;
+    int m_currentRow;
+
+    int m_x;
+    int m_y;
+
+    int m_width;
+    int m_height;
 };
 
 #endif

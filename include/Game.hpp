@@ -10,29 +10,34 @@
 
 class Game
 {
-    public:
-        Game();
-        virtual ~Game();
+public:
+    Game();
 
-        bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
+    virtual ~Game();
 
-        void render ();
-        void update ();
-        void handleEvents ();
-        void clean();
+    bool init(const char *title, int xpos, int ypos, int width, int height, int flags);
 
-        bool running () { return m_bRunning; };
-        
-    protected:
-    private:
-        SDL_Window* m_pWindow;
-        SDL_Renderer* m_pRenderer;
+    void render();
 
-        bool m_bRunning;
+    void update();
 
-        Player* m_player;
-        Obstacle* m_obstacle;
-        std::vector<Obstacle*> m_gameObstacles;
+    void handleEvents();
+
+    void clean();
+
+    bool running()
+    { return m_bRunning; };
+
+protected:
+private:
+    SDL_Window *m_pWindow;
+    SDL_Renderer *m_pRenderer;
+
+    bool m_bRunning;
+
+    Player *m_player;
+    Obstacle *m_obstacle;
+    std::vector<Obstacle *> m_gameObstacles;
 };
 
 #endif
