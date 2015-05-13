@@ -8,6 +8,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Map.hpp"
+#include "Nova.hpp"
 
 class Game
 {
@@ -37,6 +38,7 @@ private:
     bool m_bRunning;
 
     Player *m_player;
+    Nova *m_nova;
     Map *m_map;
 };
 

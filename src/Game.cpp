@@ -75,8 +75,17 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
+    
+    if (!TextureManager::Instance()->load("assets/supernova.png", "supernova", m_pRenderer))
+    {
+        return false;
+    }
+
     m_player = new Player();
     m_player->load(100, 100, 96, 96, "monster");
+
+    m_nova = new Nova();
+    m_nova->load(width - 150, height - 150, 150, 131, "supernova");
 
     m_map = new Map(width, height);
     m_map->generate_obstacles(20);
@@ -89,6 +98,7 @@ void Game::render()
     SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
     m_player->draw(m_pRenderer);
+    m_nova->draw(m_pRenderer);
     m_map->draw(m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
@@ -97,6 +107,7 @@ void Game::render()
 void Game::update()
 {
     m_player->update(m_map);
+    m_nova->update();
     m_map->update();
 }
 
