@@ -27,7 +27,7 @@ protected:
     int m_height;
 
     std::vector< std::vector<int> > m_matrix;
-    std::vector< GameObject* > m_gameObstacles;
+    std::vector< Obstacle* > m_gameObstacles;
 
     std::vector< std::vector<bool> > m_visited;
     std::vector< std::vector<std::pair<int,int> > > m_dad;

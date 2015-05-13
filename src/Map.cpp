@@ -37,7 +37,7 @@ void Map::draw(SDL_Renderer *pRenderer)
 
 void Map::update()
 {
-    for (std::vector<GameObject *>::size_type i = 0; 
+    for (std::vector<Obstacle *>::size_type i = 0; 
 			i != m_gameObstacles.size(); i++)
     {
         m_gameObstacles[i]->update();
