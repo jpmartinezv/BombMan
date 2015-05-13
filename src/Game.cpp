@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <SDL2/SDL_mixer.h>
 
 Game::Game()
 {
@@ -38,6 +39,12 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             std::cout << "window init fail" << std::endl;
             return false; // window init fail
         }
+        //Initialize SDL_mixer
+        if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+        {
+            std::cout << "SDL_mixer could not initialize! SDL_mixer Error:" << Mix_GetError() << std::endl;
+            return false;
+        }
     }
     else
     {
@@ -47,6 +54,16 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
     std::cout << "init success" << std::endl;
     m_bRunning = true;// everything inited successfully, start the main loop
 
+    // LOAD MUSIC
+    if (!SoundManager::Instance()->loadMusic("assets/beat.wav", "beat") )
+    {
+        return false;
+    }
+    if (!SoundManager::Instance()->loadSound("assets/high.wav", "high") )
+    {
+        return false;
+    }
+    SoundManager::Instance()->playMusic("beat");
 
     // LOAD IMG
     if (!TextureManager::Instance()->load("assets/monster.png", "monster", m_pRenderer))

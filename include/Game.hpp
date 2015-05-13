@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "TextureManager.hpp"
+#include "SoundManager.hpp"
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Map.hpp"

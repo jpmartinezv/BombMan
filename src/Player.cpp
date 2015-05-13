@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "Map.hpp"
+#include "SoundManager.hpp"
 #include <SDL2/SDL.h>
 
 void Player::load(int x, int y, int width, int height, std::string textureID)
@@ -25,6 +26,8 @@ void Player::update(Map *map)
     {
         m_x = t_x;
         m_y = t_y;
+    } else {
+        SoundManager::Instance()->playSound("high");
     }
 }
 
