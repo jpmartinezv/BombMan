@@ -55,15 +55,15 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
     m_bRunning = true;// everything inited successfully, start the main loop
 
     // LOAD MUSIC
-    Mix_Music *gMusic = NULL;
-    gMusic = Mix_LoadMUS( "assets/beat.wav" );
-    if( gMusic == NULL )
+    if (!SoundManager::Instance()->loadMusic("assets/beat.wav", "beat") )
     {
-        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
         return false;
     }
-    Mix_PlayMusic( gMusic, -1 );
-
+    if (!SoundManager::Instance()->loadSound("assets/high.wav", "high") )
+    {
+        return false;
+    }
+    SoundManager::Instance()->playMusic("beat");
 
     // LOAD IMG
     if (!TextureManager::Instance()->load("assets/monster.png", "monster", m_pRenderer))
