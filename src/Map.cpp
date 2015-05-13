@@ -80,6 +80,8 @@ void Map::generate_obstacles(int n)
 
 bool Map::isfree(int x, int y)
 {
+	if ( x < 0 or x >= m_width or y < 0 or y >= m_height)
+		return false;
 	return m_matrix[x][y] == 0;
 }
 
