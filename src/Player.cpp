@@ -6,7 +6,7 @@
 void Player::load(int x, int y, int width, int height, std::string textureID)
 {
     GameObject::load(x, y, width, height, textureID);
-    m_currentRow = 2;
+    m_currentRow = 1;
 }
 
 void Player::draw(SDL_Renderer *pRenderer)

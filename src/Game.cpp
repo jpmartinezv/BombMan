@@ -76,7 +76,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         return false;
     }
     m_player = new Player();
-    m_player->load(300, 300, 96, 96, "monster");
+    m_player->load(100, 100, 96, 96, "monster");
 
     m_map = new Map(width, height);
     m_map->generate_obstacles(20);

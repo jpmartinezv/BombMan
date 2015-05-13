@@ -61,8 +61,10 @@ void Map::generate_obstacles(int n)
 	{
 		Obstacle *m_obstacle = new Obstacle();
 
-		px = rand() % m_width;
-		py = rand() % m_height;
+		do {
+			px = rand() % m_width;
+			py = rand() % m_height;
+		} while ( px < 200 and py < 200 );
 
 		for (int x = px - w_player; x < px + w_obstacle + w_player; ++x)
 			for (int y = py - w_player; y < py + w_obstacle + w_player; ++y)
